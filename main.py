@@ -53,7 +53,15 @@ def process_video(yt):
  choice = input()
 
  if(choice == "a" or choice == "A"):
-  a = yt.streams.filter(only_audio=True).first()
+  try:
+   a = yt.streams.filter(only_audio=True).first()
+  except:
+   clear()
+   print(Fore.RED + "There was an error while converting your video")
+   time.sleep(3)
+   clear()
+   print(Fore.CYAN + "Please try again :")
+   select_video()
   clear()
   path = filedialog.askdirectory()
   print("Downloading...")
@@ -82,7 +90,3 @@ def choice_1(yt):
 
  
 select_video()
-
-
-
-
